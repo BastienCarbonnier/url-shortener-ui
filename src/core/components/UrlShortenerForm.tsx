@@ -31,7 +31,7 @@ function UrlShortenerForm() {
     const res = await shortenUrl(urlToShorten, 'https://www.google.com');
     console.log(res.data);
     console.log(urlToShorten);
-    window.location.href = res.data.data.shortenUrl;
+    // window.location.href = res.data.data.shortenUrl;
   };
 
   return (
