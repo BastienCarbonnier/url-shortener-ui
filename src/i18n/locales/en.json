@@ -1,5 +1,8 @@
 {
   "translation": {
-    "title": "Url shortener"
+    "title": "Url shortener",
+    "url-shortener-form": {
+      "button-title": "Shorten Url"
+    }
   }
 }

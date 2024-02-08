@@ -22,32 +22,28 @@ const style = css`
   }
 `;
 
-function UrlShortenerForm() {
-  const [urlToShorten, setUrlToShorten] = useState('');
-  const { t, i18n } = useTranslation();
+function LanguageToggle() {
+  const { i18n } = useTranslation();
+  const mapLanguage: Record<string, string> = {
+    fr: 'en',
+    en: 'fr'
+  }
 
-  const handleShortenUrl = () => {
-    console.log(urlToShorten);
-    const mapLang: Record<string, string> = {
-      fr: 'en',
-      en: 'fr'
-    }
-    i18n.changeLanguage(mapLang[i18n.language])
+  const handleChangeLanguage = () => {
+    i18n.changeLanguage(mapLanguage[i18n.language])
   };
 
   return (
     <div className={classNames(style)}>
-      <TextField className='form-input' value={urlToShorten} onChange={(event) => setUrlToShorten(event.target.value)}></TextField>
       <Button 
         className='form-button' 
-        variant="contained" 
-        startIcon={<CloudUploadIcon />} 
+        variant="contained"
         fullWidth={true} 
-        onClick={() => handleShortenUrl()}>
-          {t('url-shortener-form.button-title')}
+        onClick={() => handleChangeLanguage()}>
+          {mapLanguage[i18n.language]}
       </Button>
     </div>
   );
 }
 
-export default UrlShortenerForm;
+export default LanguageToggle;

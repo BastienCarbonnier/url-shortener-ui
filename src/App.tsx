@@ -3,6 +3,7 @@ import router from '@/router'
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline, createTheme } from '@mui/material';
 import { RouterProvider } from 'react-router-dom'
+import LanguageToggle from './core/components/LanguageToggle';
 
 const darkTheme = createTheme({
   palette: {
@@ -14,6 +15,7 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <LanguageToggle></LanguageToggle>
       <RouterProvider router={router}></RouterProvider>
     </ThemeProvider>
   )
