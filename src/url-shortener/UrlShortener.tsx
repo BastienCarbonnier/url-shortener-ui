@@ -1,4 +1,4 @@
-import UrlShortenerForm from '@/core/components/URlShortenerForm';
+import UrlShortenerForm from '@/core/components/UrlShortenerForm';
 import { css } from '@linaria/core';
 import { useTranslation } from 'react-i18next';
 

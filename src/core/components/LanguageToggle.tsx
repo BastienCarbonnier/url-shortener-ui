@@ -1,9 +1,6 @@
 import { css } from '@linaria/core';
 import classNames from 'classnames';
-import { useState } from 'react';
-import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useTranslation } from 'react-i18next';
 
 const style = css`

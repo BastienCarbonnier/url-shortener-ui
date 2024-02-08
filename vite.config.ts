@@ -7,8 +7,8 @@ import wywInJS from '@wyw-in-js/vite';
 export default defineConfig({
   base: '',
   plugins: [
-    react(), 
-    wywInJS()
+    wywInJS(),
+    react()
   ],
   resolve: {
     alias: {
@@ -16,6 +16,7 @@ export default defineConfig({
     }
   },
   define: {},
+  /*
   build: {
     rollupOptions: {
       output: {
@@ -24,5 +25,15 @@ export default defineConfig({
         }
       }
     }
+  },*/
+  preview: {
+    port: 3000,
+    strictPort: true,
+  },
+  server: {
+    port: 3000,
+    strictPort: true,
+    host: true,
+    origin: "http://0.0.0.0:8080",
   },
 })
