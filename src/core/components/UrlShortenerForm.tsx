@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useTranslation } from 'react-i18next';
+import { shortenUrl } from '../services/shortener.service';
 
 const style = css`
   display: flex;
@@ -26,8 +27,11 @@ function UrlShortenerForm() {
   const [urlToShorten, setUrlToShorten] = useState('');
   const { t } = useTranslation();
 
-  const handleShortenUrl = () => {
+  const handleShortenUrl = async () => {
+    const res = await shortenUrl(urlToShorten, 'https://www.google.com');
+    console.log(res.data);
     console.log(urlToShorten);
+    window.location.href = res.data.data.shortenUrl;
   };
 
   return (

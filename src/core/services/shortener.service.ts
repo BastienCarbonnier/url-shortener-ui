@@ -5,6 +5,6 @@ const headers = {
   "Content-Type": "application/json",
 };
 
-export const shortenUrl = async (urlToShorten: string): Promise<any> => {
-  return await axios.post(`${import.meta.env.VITE_URL_SHORTNER_API_URL}/url`, { urlToShorten }, { headers });
+export const shortenUrl = async (urlToShorten: string, resourceHost: string): Promise<any> => {
+  return await axios.post(`${import.meta.env.VITE_URL_SHORTNER_API_URL}/url-shortener/shorten`, { urlToShorten, resourceHost }, { headers });
 }
