@@ -24,15 +24,10 @@ const style = css`
 
 function UrlShortenerForm() {
   const [urlToShorten, setUrlToShorten] = useState('');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const handleShortenUrl = () => {
     console.log(urlToShorten);
-    const mapLang: Record<string, string> = {
-      fr: 'en',
-      en: 'fr'
-    }
-    i18n.changeLanguage(mapLang[i18n.language])
   };
 
   return (

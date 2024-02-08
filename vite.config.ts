@@ -16,7 +16,6 @@ export default defineConfig({
     }
   },
   define: {},
-  /*
   build: {
     rollupOptions: {
       output: {
@@ -25,7 +24,7 @@ export default defineConfig({
         }
       }
     }
-  },*/
+  },
   preview: {
     port: 3000,
     strictPort: true,
@@ -33,7 +32,6 @@ export default defineConfig({
   server: {
     port: 3000,
     strictPort: true,
-    host: true,
-    origin: "http://0.0.0.0:8080",
+    host: true
   },
 })
