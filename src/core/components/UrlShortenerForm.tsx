@@ -6,6 +6,7 @@ import { Button } from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useTranslation } from 'react-i18next';
 import { shortenUrl } from '../services/shortener.service';
+import { useForm } from "react-hook-form";
 
 const style = css`
   display: flex;
@@ -24,27 +25,35 @@ const style = css`
 `;
 
 function UrlShortenerForm() {
-  const [urlToShorten, setUrlToShorten] = useState('');
   const { t } = useTranslation();
+  const [shortenedUrl, setShortenedUrl] = useState();
+  const { register, handleSubmit } = useForm();
 
-  const handleShortenUrl = async () => {
-    const res = await shortenUrl(urlToShorten, 'https://www.google.com');
+  const handleFormSubmit = async (data: any) => {
+    console.log(data);
+    const res = await shortenUrl(data['urlToShorten'], 'https://www.google.com');
     console.log(res.data);
-    console.log(urlToShorten);
-    // window.location.href = res.data.data.shortenUrl;
-  };
+    setShortenedUrl(res.data.data['shortenedUrl']);
+  }
 
   return (
     <div className={classNames(style)}>
-      <TextField className='form-input' value={urlToShorten} onChange={(event) => setUrlToShorten(event.target.value)}></TextField>
-      <Button 
-        className='form-button' 
-        variant="contained" 
-        startIcon={<CloudUploadIcon />} 
-        fullWidth={true} 
-        onClick={() => handleShortenUrl()}>
+      <form onSubmit={handleSubmit((data: any) => handleFormSubmit(data))}>
+        <TextField 
+          {...register("urlToShorten")}
+          className='form-input'>
+        </TextField>
+        <Button 
+          className='form-button' 
+          variant="contained"
+          type='submit'
+          startIcon={<CloudUploadIcon />} 
+          fullWidth={true}>
           {t('url-shortener-form.button-title')}
-      </Button>
+        </Button>
+      </form>
+
+      {window.location.origin + '/short/' + shortenedUrl}
     </div>
   );
 }
