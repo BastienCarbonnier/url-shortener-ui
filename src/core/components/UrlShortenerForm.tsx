@@ -3,10 +3,11 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ContentCutIcon from '@mui/icons-material/ContentCut';
 import { useTranslation } from 'react-i18next';
 import { shortenUrl } from '../services/shortener.service';
 import { useForm } from "react-hook-form";
+import { constructShortenedUrlForId } from '../utils/url.utils';
 
 const style = css`
   display: flex;
@@ -26,14 +27,23 @@ const style = css`
 
 function UrlShortenerForm() {
   const { t } = useTranslation();
-  const [shortenedUrl, setShortenedUrl] = useState();
+  const [shortenedUrl, setShortenedUrl] = useState('');
   const { register, handleSubmit } = useForm();
+
+  const copyToClipboard = async (shortenedUrl: string) => {
+    await navigator.clipboard.writeText(shortenedUrl);
+    console.log("Copied!!!");
+  }
 
   const handleFormSubmit = async (data: any) => {
     console.log(data);
-    const res = await shortenUrl(data['urlToShorten'], 'https://www.google.com');
-    console.log(res.data);
-    setShortenedUrl(res.data.data['shortenedUrl']);
+    shortenUrl(data['urlToShorten']).then((response) => {
+      const shortenedUrl = constructShortenedUrlForId(response.data.shortenedUrl);
+      setShortenedUrl(shortenedUrl);
+      copyToClipboard(shortenedUrl);
+    }).catch((error) => {
+      console.log(error);
+    })
   }
 
   return (
@@ -47,13 +57,11 @@ function UrlShortenerForm() {
           className='form-button' 
           variant="contained"
           type='submit'
-          startIcon={<CloudUploadIcon />} 
-          fullWidth={true}>
+          startIcon={<ContentCutIcon/>}>
           {t('url-shortener-form.button-title')}
         </Button>
       </form>
-
-      {window.location.origin + '/short/' + shortenedUrl}
+      {shortenedUrl}
     </div>
   );
 }
