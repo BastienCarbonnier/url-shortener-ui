@@ -1,8 +1,18 @@
 {
   "translation": {
     "title": "Url shortener",
+    "description": "Enter the URL in the field below. By clicking on the button you will get the shorten URL.",
     "url-shortener-form": {
-      "button-title": "Shorten Url"
+      "button-title": "Shorten Url",
+      "alert": {
+        "error": "An error occured. Please try again later.",
+        "success": "Url shortened has been copied to clipboard!"
+      },
+      "error": {
+        "required": "Url is required",
+        "invalid-format": "It's not an url"
+      },
+      "label": "Url to shorten"
     }
   }
 }

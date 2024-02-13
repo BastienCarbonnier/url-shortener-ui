@@ -1,8 +1,18 @@
 {
   "translation": {
     "title": "Raccourcisseur d'URL",
+    "description": "Entrez l'Url dans le champs ci-dessous. En cliquant sur le bouton 'Raccourcir l'Url' vous obtiendrez l'Url raccourci.",
     "url-shortener-form": {
-      "button-title": "Raccourcir l'url"
+      "button-title": "Raccourcir l'URL",
+      "alert": {
+        "error": "Une erreur est survenue, veuillez réessayer dans un moment.",
+        "success": "L'Url raccourci a bien été copié dans le presse-papier."
+      },
+      "error": {
+        "required": "L'Url est obligatoire",
+        "invalid-format": "La chaine de caractères ne correspond pas à une Url"
+      },
+      "label": "Url à raccourcir"
     }
   }
 }

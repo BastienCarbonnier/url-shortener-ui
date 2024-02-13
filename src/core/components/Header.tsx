@@ -1,4 +1,4 @@
-import { AppBar, Toolbar } from '@mui/material';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import LanguageToggle from './LanguageToggle';
 import classNames from 'classnames';
 import { css } from '@linaria/core';
@@ -18,7 +18,7 @@ function Header() {
     <header className={classNames(style)}>
       <AppBar component="nav">
         <Toolbar className='toolbar'>
-          <h1>{t('header.title')}</h1>
+          <Typography variant='h4'>{t('title')}</Typography>
           <LanguageToggle></LanguageToggle>
         </Toolbar>
       </AppBar>

@@ -1,13 +1,19 @@
 import { css } from '@linaria/core';
 import classNames from 'classnames';
 import { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import { Button } from '@mui/material';
+import { Button, Link, TextField, Typography } from '@mui/material';
 import ContentCutIcon from '@mui/icons-material/ContentCut';
 import { useTranslation } from 'react-i18next';
 import { shortenUrl } from '../services/shortener.service';
 import { useForm } from "react-hook-form";
 import { constructShortenedUrlForId } from '../utils/url.utils';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
+import { Alert } from '@mui/material';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { REGEX_URL_VALIDATION } from '../constants/regex.constant';
+import { styleAlertError, styleAlertSuccess, styleIcon } from '../constants/style.constant';
 
 const style = css`
   display: flex;
@@ -15,54 +21,87 @@ const style = css`
   width: 100%;
   gap: 1em;
 
-  form-input {
-    display: flex;
-    width: 50%;
-  }
-  form-button {
-    display: flex;
-    width: 50%;
+  .shortened-url {
+    margin-top: 2em;
   }
 `;
 
+const styleShortenedUrl = css`
+  margin-top: 2em;
+`;
+
+
+interface IFormInput {
+  urlToShorten: string
+}
+
+
+const schema = yup.object().shape({
+  urlToShorten: yup
+    .string()
+    .required("error.required")
+    .matches(REGEX_URL_VALIDATION, "error.invalid-format")
+});
+
 function UrlShortenerForm() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('', { keyPrefix: 'url-shortener-form'});
   const [shortenedUrl, setShortenedUrl] = useState('');
-  const { register, handleSubmit } = useForm();
+  const [hasBackendError, setHasBackendError] = useState<boolean | null>(null);
+  const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({ resolver: yupResolver(schema) });
 
   const copyToClipboard = async (shortenedUrl: string) => {
     await navigator.clipboard.writeText(shortenedUrl);
     console.log("Copied!!!");
   }
 
-  const handleFormSubmit = async (data: any) => {
-    console.log(data);
-    shortenUrl(data['urlToShorten']).then((response) => {
+  const handleFormSubmit = async (data: IFormInput) => {
+    shortenUrl(data.urlToShorten).then((response) => {
       const shortenedUrl = constructShortenedUrlForId(response.data.shortenedUrl);
       setShortenedUrl(shortenedUrl);
       copyToClipboard(shortenedUrl);
+      setHasBackendError(false);
     }).catch((error) => {
       console.log(error);
+      setHasBackendError(true);
     })
   }
 
+  const renderValidationMessage = (): React.ReactNode => {
+    let icon = <CloseIcon fontSize="inherit" className={styleIcon}/>;
+    let message = t('alert.error');
+    let style = styleAlertError;
+
+    if (!hasBackendError) {
+      icon = <CheckIcon fontSize="inherit" className={styleIcon}/>;
+      message = t('alert.success');
+      style = styleAlertSuccess;
+    }
+    return (<Alert icon={icon} className={style}>{message}</Alert>);
+  };
+
   return (
-    <div className={classNames(style)}>
-      <form onSubmit={handleSubmit((data: any) => handleFormSubmit(data))}>
+    <>
+      {hasBackendError != null && renderValidationMessage()}
+      <form onSubmit={handleSubmit((data: any) => handleFormSubmit(data))} className={classNames(style)}>
         <TextField 
           {...register("urlToShorten")}
-          className='form-input'>
+          error={errors.urlToShorten ? true : false}
+          label={errors.urlToShorten?.message ? t(errors.urlToShorten.message) : t('label')}
+          >
         </TextField>
-        <Button 
-          className='form-button' 
+        <Button
           variant="contained"
           type='submit'
           startIcon={<ContentCutIcon/>}>
-          {t('url-shortener-form.button-title')}
+          {t('button-title')}
         </Button>
       </form>
-      {shortenedUrl}
-    </div>
+      { shortenedUrl && 
+        <div className={styleShortenedUrl}>
+          <Typography variant='h4'>Shortened url</Typography><Link href={shortenedUrl}>{shortenedUrl}</Link>
+        </div>
+      }
+    </>
   );
 }
 
