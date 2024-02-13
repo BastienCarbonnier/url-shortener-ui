@@ -8,7 +8,7 @@ const router = createBrowserRouter([
   { path: '/500', element: <Error500Page /> },
   { path: '/404', element: <Error404Page /> },
   { path: '/', element: <UrlShortener /> },
-  { path: 'short/**', element: <Redirection /> }
+  { path: '*', element: <Redirection /> }
 ]);
 
 export default router;
