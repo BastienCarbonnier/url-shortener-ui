@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getFullUrl } from '../services/shortener.service';
 import { BackendResponse } from '../models/response.model';
 import { useTranslation } from 'react-i18next';
