@@ -7,8 +7,8 @@ import Error404Page from '@/core/pages/Error404Page';
 const router = createBrowserRouter([
   { path: '/500', element: <Error500Page /> },
   { path: '/404', element: <Error404Page /> },
-  { path: '/short', element: <Redirection /> },
   { path: '/', element: <UrlShortener /> },
+  { path: 'short/*', element: <Redirection /> }
 ]);
 
 export default router;
