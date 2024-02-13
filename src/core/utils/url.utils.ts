@@ -1,5 +1,5 @@
 export const getBaseForShortUrl = () => {
-  return `${window.location.origin}/short/`;
+  return `${window.location.origin}/`;
 }
 
 export const constructShortenedUrlForId = (shortUrlId: string) => {
