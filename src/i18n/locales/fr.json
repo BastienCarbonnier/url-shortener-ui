@@ -12,7 +12,11 @@
         "required": "L'Url est obligatoire",
         "invalid-format": "La chaine de caractères ne correspond pas à une Url"
       },
-      "label": "Url à raccourcir"
+      "label": "Url à raccourcir",
+      "result": {
+        "title": "Url raccourci",
+        "alreadyShortened": "(a déjà été raccourci)"
+      }
     },
     "pages": {
       "error404": {

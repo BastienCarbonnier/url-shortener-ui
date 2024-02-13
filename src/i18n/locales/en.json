@@ -12,7 +12,11 @@
         "required": "Url is required",
         "invalid-format": "Please enter an url with the right format"
       },
-      "label": "Url to shorten"
+      "label": "Url to shorten",
+      "result": {
+        "title": "Shortened Url",
+        "alreadyShortened": "(was already shortened)"
+      }
     },
     "pages": {
       "error404": {

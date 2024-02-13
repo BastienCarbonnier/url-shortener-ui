@@ -44,6 +44,7 @@ const schema = yup.object().shape({
 function UrlShortenerForm() {
   const { t } = useTranslation('', { keyPrefix: 'url-shortener-form'});
   const [shortenedUrl, setShortenedUrl] = useState('');
+  const [alreadyShortened, setAlreadyShortened] = useState(false);
   const [hasBackendError, setHasBackendError] = useState<boolean | null>(null);
   const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({ resolver: yupResolver(schema) });
 
@@ -53,9 +54,10 @@ function UrlShortenerForm() {
 
   const handleFormSubmit = async (data: IFormInput) => {
     shortenUrl(data.urlToShorten).then((response) => {
-      const shortenedUrl = constructShortenedUrlForId(response.data.shortenedUrl);
-      setShortenedUrl(shortenedUrl);
-      copyToClipboard(shortenedUrl);
+      const shortenedUrlForId = constructShortenedUrlForId(response.data.shortenedUrl);
+      setAlreadyShortened(response.data.alreadyShortened);
+      setShortenedUrl(shortenedUrlForId);
+      copyToClipboard(shortenedUrlForId);
       setHasBackendError(false);
     }).catch(() => {
       setHasBackendError(true);
@@ -94,11 +96,12 @@ function UrlShortenerForm() {
       </form>
       { shortenedUrl && 
         <div className={styleShortenedUrl}>
-          <Typography variant='h4'>Shortened url</Typography><Link href={shortenedUrl}>{shortenedUrl}</Link>
+          <Typography variant='h4'>{t('result.title')} {alreadyShortened ? t('result.alreadyShortened') : null}</Typography>
+          <Link href={shortenedUrl}>{shortenedUrl}</Link>
         </div>
       }
     </>
   );
-}
+  }  
 
 export default UrlShortenerForm;
