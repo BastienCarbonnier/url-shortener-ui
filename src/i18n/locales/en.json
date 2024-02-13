@@ -10,7 +10,7 @@
       },
       "error": {
         "required": "Url is required",
-        "invalid-format": "It's not an url"
+        "invalid-format": "Please enter an url with the right format"
       },
       "label": "Url to shorten"
     },
