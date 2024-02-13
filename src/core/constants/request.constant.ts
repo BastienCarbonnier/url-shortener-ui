@@ -1,0 +1,1 @@
+export const PARAMS_KEY_SHORT_ID = 'shortId';
