@@ -13,6 +13,19 @@
         "invalid-format": "La chaine de caractères ne correspond pas à une Url"
       },
       "label": "Url à raccourcir"
+    },
+    "pages": {
+      "error404": {
+        "title": "Erreur 404",
+        "description": "La page que vous essayez d'atteindre n'existe pas"
+      },
+      "error500": {
+        "title": "Erreur 500",
+        "description": "Une erreur est survenue, veuillez réessayer dans un moment."
+      },
+      "redirection": {
+        "title": "Vous serez redirigé vers votre page dans 2 secondes"
+      }
     }
   }
 }

@@ -18,7 +18,7 @@ function Header() {
     <header className={classNames(style)}>
       <AppBar component="nav">
         <Toolbar className='toolbar'>
-          <Typography variant='h4'>{t('title')}</Typography>
+          <Typography variant='h5'>{t('title')}</Typography>
           <LanguageToggle></LanguageToggle>
         </Toolbar>
       </AppBar>

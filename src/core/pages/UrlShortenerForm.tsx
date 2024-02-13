@@ -30,11 +30,9 @@ const styleShortenedUrl = css`
   margin-top: 2em;
 `;
 
-
 interface IFormInput {
   urlToShorten: string
 }
-
 
 const schema = yup.object().shape({
   urlToShorten: yup
@@ -60,8 +58,7 @@ function UrlShortenerForm() {
       setShortenedUrl(shortenedUrl);
       copyToClipboard(shortenedUrl);
       setHasBackendError(false);
-    }).catch((error) => {
-      console.log(error);
+    }).catch(() => {
       setHasBackendError(true);
     })
   }

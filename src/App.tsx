@@ -14,7 +14,7 @@ const darkTheme = createTheme({
 });
 
 const mainStyle = css`
-  margin-top: ${String(HEADER_HEIGHT)};
+  margin-top: ${HEADER_HEIGHT};
 `;
 
 function App() {
