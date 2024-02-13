@@ -12,12 +12,15 @@ function Redirection() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(shortId);
     if (shortId) {
       getFullUrl(shortId).then((response: BackendResponse) => {
         setTimeout(() => {
+          console.log(response.data)
           window.location.href = response.data.fullUrl;
         }, 1500);
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error)
         navigate('/404');
       })
     } else {

@@ -1,13 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Error500Page from '@/core/pages/Error500Page';
-import UrlShortener from '@/url-shortener/UrlShortener';
+import UrlShortener from '@/core/pages/UrlShortener';
 import Redirection from '@/core/pages/Redirection';
 import Error404Page from '@/core/pages/Error404Page';
 
 const router = createBrowserRouter([
   { path: '/500', element: <Error500Page /> },
   { path: '/404', element: <Error404Page /> },
-  { path: '/short/:shortId', element: <Redirection />, },
+  { path: '/short/:shortId', element: <Redirection /> },
   { path: '/', element: <UrlShortener /> },
 ]);
 

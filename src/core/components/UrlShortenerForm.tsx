@@ -49,7 +49,6 @@ function UrlShortenerForm() {
 
   const copyToClipboard = async (shortenedUrl: string) => {
     await navigator.clipboard.writeText(shortenedUrl);
-    console.log("Copied!!!");
   }
 
   const handleFormSubmit = async (data: IFormInput) => {

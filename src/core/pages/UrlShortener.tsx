@@ -1,5 +1,5 @@
 import Description from '@/core/components/Description';
-import UrlShortenerForm from '@/core/pages/UrlShortenerForm';
+import UrlShortenerForm from '@/core/components/UrlShortenerForm';
 import { css } from '@linaria/core';
 import { Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
