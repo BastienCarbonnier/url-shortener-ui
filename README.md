@@ -28,7 +28,13 @@ To launch latest backend and frontend images and a postgresql database you can u
 
 ## Testing Cypress
 To launch the test you need first to launch the application with this command :
+
 ```bash
-docker compose -f cypress/docker/url-shortener.yaml -p "url-shortener" up
+docker compose -f cypress/docker/url-shortener.yaml -p "url-shortener-cy" up
+```
+
+And then run : 
+```bash
+npm run cy:run-e2e
 ```
 
