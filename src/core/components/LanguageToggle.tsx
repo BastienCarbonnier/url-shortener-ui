@@ -17,6 +17,7 @@ function LanguageToggle() {
       <Button 
         className='form-button'
         color='inherit'
+        data-cy='languageToggle'
         onClick={() => handleChangeLanguage()}>
           {mapLanguage[i18n.language]}
       </Button>

@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   env: {
-    app_base_url: "https://urlshortener-ui-1c6938ccabc0.herokuapp.com/",
+    app_base_url: "http://localhost:3002/",
   },
   e2e: {
     setupNodeEvents(on, config) {

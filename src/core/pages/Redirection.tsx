@@ -29,7 +29,7 @@ function Redirection() {
 
   return (
     <div>
-      <Typography variant='h4'>{t('title')}</Typography>
+      <Typography variant='h4' data-cy='redirectionTitle'>{t('title')}</Typography>
       <CircularProgress
         size={50}
         sx={{

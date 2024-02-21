@@ -26,3 +26,9 @@ It's on Eco mode on Heroku so on the first connection the server needs to launch
 
 To launch latest backend and frontend images and a postgresql database you can use this docker-compose file : [Docker Compose File](https://github.com/BastienCarbonnier/url-shortener-api/blob/main/docker/docker-compose.yaml).
 
+## Testing Cypress
+To launch the test you need first to launch the application with this command :
+```bash
+docker compose -f cypress/docker/url-shortener.yaml -p "url-shortener" up
+```
+

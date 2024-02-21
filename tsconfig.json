@@ -3,7 +3,7 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "types":["vite/client"],
+    "types":["vite/client", "cypress"],
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": "./",
@@ -25,6 +25,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "typings"],
+  "include": ["src", "typings", "cypress"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

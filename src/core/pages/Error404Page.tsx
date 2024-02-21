@@ -5,7 +5,7 @@ export default function Error404Page() {
   const { t } = useTranslation('', { keyPrefix: 'pages.error404'});
   return (
     <div>
-      <Typography variant='h3'>{t('title')}</Typography>
+      <Typography variant='h3' data-cy='error404Title'>{t('title')}</Typography>
       <Typography variant='body1'>{t('description')}</Typography>
     </div>
   );

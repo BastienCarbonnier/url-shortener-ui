@@ -12,7 +12,7 @@ function UrlShortener() {
 
   return (
     <div className={style}>
-      <Typography variant='h3'>{t('title')}</Typography>
+      <Typography variant='h3' data-cy='mainTitle'>{t('title')}</Typography>
       <Description/>
       <UrlShortenerForm/>
     </div>

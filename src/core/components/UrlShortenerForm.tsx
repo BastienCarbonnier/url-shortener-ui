@@ -74,7 +74,7 @@ function UrlShortenerForm() {
       message = t('alert.success');
       style = styleAlertSuccess;
     }
-    return (<Alert icon={icon} className={style}>{message}</Alert>);
+    return (<Alert icon={icon} className={style} data-cy='alertSuccess'>{message}</Alert>);
   };
 
   return (
@@ -85,6 +85,7 @@ function UrlShortenerForm() {
           {...register("urlToShorten")}
           error={errors.urlToShorten ? true : false}
           label={errors.urlToShorten?.message ? t(errors.urlToShorten.message) : t('label')}
+          data-cy='urlToShorten'
           >
         </TextField>
         <Button
@@ -97,7 +98,7 @@ function UrlShortenerForm() {
       { shortenedUrl && 
         <div className={styleShortenedUrl}>
           <Typography variant='h4'>{t('result.title')} {alreadyShortened ? t('result.alreadyShortened') : null}</Typography>
-          <Link href={shortenedUrl}>{shortenedUrl}</Link>
+          <Link href={shortenedUrl} data-cy='urlShortenedLink'>{shortenedUrl}</Link>
         </div>
       }
     </>
